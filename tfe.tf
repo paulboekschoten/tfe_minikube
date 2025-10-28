@@ -18,7 +18,7 @@ resource "kubernetes_secret" "terraform-enterprise" {
 }
 
 resource "helm_release" "tfe" {
-  name            = kubernetes_secret.terraform-enterprise.metadata.0.namespace
+  name            = "${var.tag_prefix}-tfe"
   repository      = "https://helm.releases.hashicorp.com"
   chart           = "terraform-enterprise"
   namespace       = var.namespace

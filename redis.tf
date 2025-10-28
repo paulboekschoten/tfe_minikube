@@ -51,6 +51,7 @@ resource "kubernetes_service" "redis" {
     }
     type = "LoadBalancer"
   }
+  wait_for_load_balancer = false
 }
 
 # output "redis_service_name" {

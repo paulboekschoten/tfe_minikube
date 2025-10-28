@@ -32,8 +32,7 @@ service:
   annotations:
     # service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
     # service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-  #type: ClusterIP
-  type: LoadBalancer
+  type: ClusterIP
 
 
 agentWorkerPodTemplate:

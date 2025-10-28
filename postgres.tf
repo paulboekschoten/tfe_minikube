@@ -96,6 +96,7 @@ resource "kubernetes_service" "postgres" {
     }
     type = "LoadBalancer"
   }
+  wait_for_load_balancer = false
 }
 
 # output "postgres_service_name" {

@@ -47,8 +47,7 @@ Start minikube with additional parameters:
 This will put the config in kubectl automatically so the kubernetes provider can use it.  
 Add the full path of the config file to the variable `kubectl_config_path` in `variables.tfvars`
 
-It is necessary to start a minikube tunnel, so the Loadbalancer services can be created.
-Also, if you want to access Minio and Postgres (locally) you will need to start a Minikube tunnel.  
+If you want to access Minio and Postgres (locally) you will need to start a Minikube tunnel.  
 This can be done with the following command:  
 `sudo minikube tunnel --profile=tfe`  
 The name you enter at `--profile` must match the name you used in the start command with `-p`, here `tfe`.
@@ -125,4 +124,19 @@ You will need to delete this manually with the command shown after the apply.
 Default is `cloudflared tunnel delete tfe-tunnel`.  
 
 Also the minikube cluster must be deleted manually.  
-`minikube delete -p tfe` 
+`minikube delete -p tfe`  
+
+
+## View in Podman Desktop
+In Podman Desktop -> Kubernetes  
+Deployments:  
+![](media/2025-10-28-08-49-04.png)  
+
+Services:  
+![](media/2025-10-28-08-49-41.png)  
+
+Pods:  
+![](media/2025-10-28-08-52-14.png)  
+
+Clicking on a pod will give access to tabs with logs and a terminal.  
+![](media/2025-10-28-08-55-07.png)  

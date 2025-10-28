@@ -198,6 +198,7 @@ resource "kubernetes_service" "minio" {
     }
     type = "LoadBalancer"
   }
+  wait_for_load_balancer = false
 }
 
 # output "minio_service_name" {
