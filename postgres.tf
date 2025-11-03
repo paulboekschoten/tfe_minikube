@@ -12,6 +12,21 @@ resource "kubernetes_secret" "postgres" {
   type = "Opaque"
 }
 
+resource "kubernetes_persistent_volume_claim" "postgres" {
+  metadata {
+    name      = "${var.tag_prefix}-postgres-pvc"
+    namespace = var.namespace
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests = {
+        storage = "15Gi"
+      }
+    }
+  }
+}
+
 resource "kubernetes_pod" "postgres" {
   metadata {
     name      = "${var.tag_prefix}-postgres"
@@ -75,7 +90,9 @@ resource "kubernetes_pod" "postgres" {
 
     volume {
       name = "pgdata"
-      empty_dir {}
+      persistent_volume_claim {
+        claim_name = kubernetes_persistent_volume_claim.postgres.metadata[0].name
+      }
     }
     restart_policy = "Always"
   }

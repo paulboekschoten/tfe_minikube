@@ -138,5 +138,5 @@ Services:
 Pods:  
 ![](media/2025-10-28-08-52-14.png)  
 
-Clicking on a pod will give access to tabs with logs and a terminal.  
+Clicking on a pod will give access to tabs with logs and a terminal.
 ![](media/2025-10-28-08-55-07.png)  

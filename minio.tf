@@ -13,6 +13,21 @@ resource "kubernetes_secret" "minio_root" {
   type = "Opaque"
 }
 
+resource "kubernetes_persistent_volume_claim" "minio" {
+  metadata {
+    name      = "${var.tag_prefix}-minio-pvc"
+    namespace = var.namespace
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests = {
+        storage = "10Gi"
+      }
+    }
+  }
+}
+
 resource "kubernetes_pod" "minio" {
   metadata {
     name      = "${var.tag_prefix}-minio"
@@ -171,7 +186,9 @@ resource "kubernetes_pod" "minio" {
     }
     volume {
       name = "data"
-      empty_dir {}
+      persistent_volume_claim {
+        claim_name = kubernetes_persistent_volume_claim.minio.metadata[0].name
+      }
     }
   }
 }
