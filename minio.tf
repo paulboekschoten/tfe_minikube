@@ -92,7 +92,7 @@ resource "kubernetes_pod" "minio" {
     # MinIO Init Sidecar Container
     container {
       name  = "minio-init"
-      image = "quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z"
+      image = var.image_minio
       env {
         name = "MINIO_ROOT_USER"
         value_from {
